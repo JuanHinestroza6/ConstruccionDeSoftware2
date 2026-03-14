@@ -1,14 +1,17 @@
-package sqlbank;
+package sqlbank.domain.model;
 
 import java.time.LocalDate;
 
 /**
- * systemRole valores válidos (no se valida en código):
- *  Individual Client | Business Client | Teller Employee |
- *  Commercial Employee | Business Employee | Business Supervisor | Internal Analyst
+ * <b>DDD Layer:</b> Domain Model
+ * <b>DDD Role:</b> Abstract Aggregate Root
  *
- * userStatus valores válidos (no se valida en código):
- *  Active | Inactive | Blocked
+ * Central entity of the banking domain. Represents any user of the system
+ * regardless of their role. Cannot be instantiated directly — all users
+ * must be either an IndividualClient or a BusinessClient.
+ *
+ * All domain entities that require user identity (Transfer, Loan) reference
+ * this entity via userID or identificationID.
  */
 public abstract class User {
 
@@ -125,4 +128,3 @@ public abstract class User {
         this.userStatus = userStatus;
     }
 }
-

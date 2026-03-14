@@ -1,14 +1,22 @@
-package sqlbank;
+package sqlbank.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * loanStatus valores válidos (no se valida en código):
- *  Under review | Approved | Rejected | Disbursed | In default | Cancelled
+ * <b>DDD Layer:</b> Domain Model
+ * <b>DDD Role:</b> Entity
  *
- * loanType valores válidos (no se valida en código):
- *  Consumer | Vehicle | Mortgage | Business
+ * Represents a loan or credit product requested by a client.
+ * Subject to a strict approval flow managed by the Internal Analyst role.
+ *
+ * Business rules:
+ * - State transitions: "Under review" → "Approved" or "Rejected"
+ * - "Disbursed" state is only reachable from "Approved".
+ * - Only the Internal Analyst role can approve or reject.
+ * - disbursementTargetAccount must be an active account of the applicant.
+ * - Upon disbursement, BankAccount.currentBalance increases by approvedAmount.
+ * - Every state change must be recorded in the AuditLog (NoSQL).
  */
 public class Loan {
 
@@ -136,4 +144,3 @@ public class Loan {
         this.disbursementTargetAccount = disbursementTargetAccount;
     }
 }
-

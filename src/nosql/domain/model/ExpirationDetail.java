@@ -1,7 +1,16 @@
-package nosql;
+package nosql.domain.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * <b>DDD Layer:</b> Domain Model (NoSQL)
+ * <b>DDD Role:</b> Embedded Value Object (JSON Detail)
+ *
+ * Contains the variable detail data for an AuditLogEntry
+ * of type "Transfer_Expiration".
+ * Captures the reason and timing of a transfer expiration event
+ * when approval was not granted within the 60-minute window.
+ */
 public class ExpirationDetail {
 
     private String reason;
@@ -40,4 +49,3 @@ public class ExpirationDetail {
         this.creatorUserID = creatorUserID;
     }
 }
-

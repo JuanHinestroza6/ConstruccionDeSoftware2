@@ -1,11 +1,24 @@
-package sqlbank;
+package sqlbank.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * transferStatus valores válidos (no se valida en código):
- *  Pending | Awaiting approval | Approved | Executed | Rejected | Expired
+ * <b>DDD Layer:</b> Domain Model
+ * <b>DDD Role:</b> Entity
+ *
+ * Represents a movement of funds between two bank accounts.
+ * May require approval depending on the amount and the creator's role.
+ *
+ * Business rules:
+ * - amount must be strictly greater than zero.
+ * - sourceAccount must have sufficient balance before execution.
+ * - If created by a Business Employee and exceeds the threshold,
+ *   status is set to "Awaiting approval" — only a Business Supervisor can approve.
+ * - Transfers in "Awaiting approval" that exceed 60 minutes without approval
+ *   automatically transition to "Expired".
+ * - Upon execution: sourceAccount balance decreases, destinationAccount increases.
+ * - Every state change must be recorded in the AuditLog (NoSQL).
  */
 public class Transfer {
 
@@ -111,4 +124,3 @@ public class Transfer {
         this.approvedByUserID = approvedByUserID;
     }
 }
-

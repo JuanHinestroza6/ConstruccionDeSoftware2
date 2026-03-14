@@ -1,8 +1,23 @@
-package nosql;
+package nosql.domain.model;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * <b>DDD Layer:</b> Domain Model (NoSQL)
+ * <b>DDD Role:</b> Domain Event / Audit Document
+ *
+ * Represents an immutable audit record stored in a NoSQL document collection.
+ * Captures every significant operation performed in the banking system
+ * for traceability, compliance, and auditing purposes (ISO 27001).
+ *
+ * Business rules:
+ * - logID is unique and acts as the document _id in the NoSQL collection.
+ * - Records are immutable — once written, they must never be modified.
+ * - detailData is polymorphic: holds exactly one of TransferDetail,
+ *   LoanDetail, or ExpirationDetail depending on operationType.
+ * - This collection is NOT used to calculate account balances —
+ *   balances are managed exclusively in the SQL relational database.
+ */
 public class AuditLogEntry {
 
     private String logID; // Unique
@@ -85,4 +100,3 @@ public class AuditLogEntry {
         this.detailData = detailData;
     }
 }
-

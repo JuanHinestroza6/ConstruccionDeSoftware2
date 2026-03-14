@@ -1,7 +1,15 @@
-package nosql;
+package nosql.domain.model;
 
 import java.math.BigDecimal;
 
+/**
+ * <b>DDD Layer:</b> Domain Model (NoSQL)
+ * <b>DDD Role:</b> Embedded Value Object (JSON Detail)
+ *
+ * Contains the variable detail data for an AuditLogEntry of type "Loan_Approval".
+ * Captures the approval decision, financial terms, and the analyst
+ * responsible for the approval at the moment it occurred.
+ */
 public class LoanDetail {
 
     private BigDecimal approvedAmount;
@@ -62,4 +70,3 @@ public class LoanDetail {
         this.approverAnalystID = approverAnalystID;
     }
 }
-

@@ -1,7 +1,15 @@
-package nosql;
+package nosql.domain.model;
 
 import java.math.BigDecimal;
 
+/**
+ * <b>DDD Layer:</b> Domain Model (NoSQL)
+ * <b>DDD Role:</b> Embedded Value Object (JSON Detail)
+ *
+ * Contains the variable detail data for an AuditLogEntry of type "Transfer".
+ * Captures the financial impact of a transfer on both the source
+ * and destination accounts at the moment of execution.
+ */
 public class TransferDetail {
 
     private BigDecimal amount;
@@ -62,4 +70,3 @@ public class TransferDetail {
         this.balanceAfterDestination = balanceAfterDestination;
     }
 }
-

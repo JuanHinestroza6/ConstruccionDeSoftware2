@@ -1,17 +1,22 @@
-package sqlbank;
+package sqlbank.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * accountType valores válidos (no se valida en código):
- *  Savings | Checking | Business | Personal
+ * <b>DDD Layer:</b> Domain Model
+ * <b>DDD Role:</b> Entity
  *
- * accountStatus valores válidos (no se valida en código):
- *  Active | Blocked | Cancelled
+ * Represents a bank account owned by a client (individual or business).
+ * Central entity for all financial operations — transfers are executed
+ * against accounts and loan disbursements are credited to accounts.
  *
- * currency valores válidos (no se valida en código):
- *  USD | COP | EUR
+ * Business rules:
+ * - accountNumber must be unique.
+ * - No operations allowed when accountStatus is "Blocked" or "Cancelled".
+ * - currentBalance must never be modified directly — only through
+ *   Transfer execution or Loan disbursement flows.
+ * - currency must be one of: USD | COP | EUR.
  */
 public class BankAccount {
 
@@ -95,4 +100,3 @@ public class BankAccount {
         this.openingDate = openingDate;
     }
 }
-

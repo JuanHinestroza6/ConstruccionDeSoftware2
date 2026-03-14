@@ -1,8 +1,19 @@
-package sqlbank;
+package sqlbank.domain.model;
 
 /**
- * El campo role tiene valor por defecto "Business Client".
- * birthDate en la superclase se maneja como null para entidades de tipo empresa.
+ * <b>DDD Layer:</b> Domain Model
+ * <b>DDD Role:</b> Entity / Aggregate Root
+ *
+ * Represents a legal entity (company) that is a client of the bank.
+ * Extends User and specializes it for corporate clients.
+ *
+ * Business rules:
+ * - taxID (NIT) must be unique across all clients.
+ * - role is immutable and always "Business Client".
+ * - birthDate is null (not applicable for companies).
+ * - legalRepresentative references an IndividualClient.identificationNumber.
+ * - Can hold BankAccounts and apply for Loans.
+ * - High-value transfers require approval from a Business Supervisor.
  */
 public class BusinessClient extends User {
 
@@ -57,4 +68,3 @@ public class BusinessClient extends User {
         return role;
     }
 }
-

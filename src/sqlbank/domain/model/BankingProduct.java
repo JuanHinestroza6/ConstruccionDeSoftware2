@@ -1,8 +1,18 @@
-package sqlbank;
+package sqlbank.domain.model;
 
 /**
- * category valores válidos (no se valida en código):
- *  Accounts | Loans | Services
+ * <b>DDD Layer:</b> Domain Model
+ * <b>DDD Role:</b> Value Object / Catalog Entity
+ *
+ * Represents a catalog entry defining the types of products and services
+ * offered by the bank. Acts as a reference table for account types and
+ * loan categories.
+ *
+ * Business rules:
+ * - productCode must be unique.
+ * - category must be one of: Accounts | Loans | Services.
+ * - requiresApproval determines whether creating this product triggers
+ *   an approval workflow.
  */
 public class BankingProduct {
 
@@ -53,4 +63,3 @@ public class BankingProduct {
         this.requiresApproval = requiresApproval;
     }
 }
-
