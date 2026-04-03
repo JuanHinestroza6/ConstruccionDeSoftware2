@@ -6,6 +6,60 @@ Miguel Angel Gonzales Mazo
 
 Domain Model – Aplicación de Gestión de Información de un Banco
 
+---
+
+## Base de Datos
+
+| Motor | Propósito | Host | Puerto | Base de datos |
+|-------|-----------|------|--------|---------------|
+| **MySQL** | Datos relacionales: clientes, cuentas bancarias, préstamos, transferencias, productos bancarios | `localhost` | `3306` | `bankdb` |
+| **MongoDB** | Bitácora de operaciones (auditoría y trazabilidad) | `localhost` | `27017` | `bank_audit` |
+
+### Crear la base de datos MySQL
+
+```sql
+CREATE DATABASE IF NOT EXISTS bankdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+> MongoDB crea la base `bank_audit` automáticamente al recibir el primer documento.
+
+## Ejecución
+
+```bash
+# Desde la carpeta /bank
+./mvnw spring-boot:run        # Linux / macOS
+mvnw.cmd spring-boot:run      # Windows
+```
+
+La aplicación arranca en **http://localhost:8081**.
+
+### Requisitos previos
+
+- Java 17+
+- MySQL 8.x corriendo en `localhost:3306`
+- MongoDB 6.x / 7.x corriendo en `localhost:27017`
+
+### Variables de entorno opcionales
+
+| Variable | Default | Descripción |
+|----------|---------|-------------|
+| `DB_USER` | `root` | Usuario de MySQL |
+| `DB_PASS` | `root` | Contraseña de MySQL |
+
+## Estado actual de infraestructura
+
+- [x] Modelo de dominio puro (sin anotaciones de framework)
+- [x] Puertos de entrada (use cases) y salida (repository ports)
+- [x] Servicios de aplicación
+- [x] Excepciones de negocio compartidas (`shared.exception`)
+- [x] Configuración de Spring Boot con MySQL y MongoDB
+- [ ] Adaptadores JPA para persistencia SQL (en construcción)
+- [ ] Adaptador MongoDB para bitácora de auditoría (en construcción)
+- [ ] Controladores REST
+- [ ] Seguridad (JWT / Spring Security)
+
+---
+
 1. Introducción
 Este Domain Model implementa las entidades descritas en el enunciado “Actividad – Funcionamiento de la Aplicación de Gestión de Información de un Banco”, separando la información estructurada en un modelo relacional (SQL) y la bitácora de operaciones en un modelo documental NoSQL, tal como se solicita en el documento.
 ​
