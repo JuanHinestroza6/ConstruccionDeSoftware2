@@ -8,6 +8,32 @@ Miguel Angel Gonzales Mazo
 
 Backend académico para la gestión de información de un banco, desarrollado con **Spring Boot** y organizado bajo **DDD + Arquitectura Hexagonal (Ports & Adapters)**.
 
+---
+
+## Base de Datos
+
+| Motor | Propósito | Host | Puerto | Base de datos |
+|-------|-----------|------|--------|---------------|
+| **MySQL** | Datos relacionales: clientes, cuentas bancarias, préstamos, transferencias, productos bancarios | `localhost` | `3306` | `bankdb` |
+| **MongoDB** | Bitácora de operaciones (auditoría y trazabilidad) | `localhost` | `27017` | `bank_audit` |
+
+### Crear la base de datos MySQL
+
+```sql
+CREATE DATABASE IF NOT EXISTS bankdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+> MongoDB crea la base `bank_audit` automáticamente al recibir el primer documento.
+
+### Variables de entorno opcionales
+
+| Variable | Default | Descripción |
+|----------|---------|-------------|
+| `DB_USER` | `root` | Usuario de MySQL |
+| `DB_PASS` | `root` | Contraseña de MySQL |
+
+---
+
 El proyecto modela clientes, usuarios del sistema, cuentas bancarias, préstamos, transferencias y bitácora de operaciones, separando el **dominio**, la **capa de aplicación** y la futura **infraestructura**.
 
 ---
