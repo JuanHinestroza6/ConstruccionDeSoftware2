@@ -1,4 +1,4 @@
-# ContruccionDeSoftware2
+# ConstruccionDeSoftware2
 
 Desarrollado por :
 Juan  Francisco Hinestroza Andrade
